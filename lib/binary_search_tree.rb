@@ -1,3 +1,5 @@
+require 'node'
+
 class BinarySearchTree
   attr_reader :head
 
@@ -7,5 +9,6 @@ class BinarySearchTree
 
   def insert(score, title)
     @head = Node.new(score, title) if !@head
+    0
   end
 end
