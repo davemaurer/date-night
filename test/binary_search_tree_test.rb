@@ -17,9 +17,24 @@ describe BinarySearchTree do
     bst    = BinarySearchTree.new
     first  = bst.insert(60, "Scary Movie")
     second = bst.insert(30, "Young Guns Two")
-    expect(bst.head.title).to eq "Scary Movie"
-    expect(first).to  eq 0
+    expect(bst.head.title).to      eq "Scary Movie"
     expect(bst.head.left.title).to eq "Young Guns Two"
-    expect(second).to eq 1
+    expect(first).to               eq 0
+    expect(second).to              eq 1
+  end
+
+  it "can insert more than two nodes" do
+    bst    = BinarySearchTree.new
+    first  = bst.insert(60, "Scary Movie")
+    second = bst.insert(30, "Young Guns Two")
+    third  = bst.insert(90, "Deadpool")
+    fourth = bst.insert(70, "Finding Nemo")
+    fifth  = bst.insert(100, "Star Wars A New Hope")
+    sixth  = bst.insert(10, "Out of Africa")
+    expect(bst.head.left.title).to        eq "Young Guns Two"
+    expect(bst.head.right.title).to       eq "Deadpool"
+    expect(bst.head.left.left.title).to   eq "Out of Africa"
+    expect(bst.head.right.left.title).to  eq "Finding Nemo"
+    expect(bst.head.right.right.title).to eq "Star Wars A New Hope"
   end
 end
