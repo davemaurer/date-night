@@ -46,7 +46,7 @@ class BinarySearchTree
     return true if score == current.score
     return false if score < current.score && current.left.nil?
     return false if score > current.score && current.right.nil?
-    return true if score == current.left.score || score == current.right.score
+    # return true if score == current.left.score || score == current.right.score
     continue_search(score, current)
   end
 
@@ -57,5 +57,22 @@ class BinarySearchTree
       include?(score, current.right)
     end
   end
+
+  def increase_depth(score, current, depth)
+    if score < current.score
+      depth_of?(score, current.left, depth)
+    else
+      depth_of?(score, current.right, depth)
+    end
+  end
+
+  def depth_of?(score, current=@head, depth=0)
+    return depth if score == current.score
+    return nil if score < current.score && current.left.nil?
+    return nil if score > current.score && current.right.nil?
+    # return depth + 1 if score == current.left.score || score == current.right.score
+    increase_depth(score, current, depth + 1)
+  end
+
 
 end
