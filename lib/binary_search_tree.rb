@@ -74,5 +74,10 @@ class BinarySearchTree
     increase_depth(score, current, depth + 1)
   end
 
-
+  def max
+    return "This list is empty" unless @head
+    current = @head
+    current = current.right until current.right.nil?
+    Hash[current.title, current.score]
+  end
 end
