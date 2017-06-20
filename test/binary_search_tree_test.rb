@@ -85,4 +85,15 @@ describe BinarySearchTree do
     expect(bst.depth_of?(96)).to  eq 3
     expect(bst.depth_of?(100)).to eq 4
   end
+
+  it "finds the movie with the highest score" do
+    bst = BinarySearchTree.new
+    bst.insert(60, "Scary Movie")
+    bst.insert(30, "Young Guns Two")
+    bst.insert(70, "Deadpool")
+    bst.insert(65, "Finding Nemo")
+    bst.insert(100, "Star Wars A New Hope")
+
+    expect(bst.max).to eq({ "Star Wars A New Hope" => 100 })
+  end
 end
