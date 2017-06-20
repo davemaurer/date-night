@@ -7,9 +7,19 @@ describe BinarySearchTree do
   end
 
   it "can insert a node" do
-    bst = BinarySearchTree.new
+    bst    = BinarySearchTree.new
     result = bst.insert(60, "Scary Movie")
     expect(bst.head.title).to eq "Scary Movie"
     expect(result).to eq 0
+  end
+
+  it "can insert two nodes" do
+    bst    = BinarySearchTree.new
+    first  = bst.insert(60, "Scary Movie")
+    second = bst.insert(30, "Young Guns Two")
+    expect(bst.head.title).to eq "Scary Movie"
+    expect(first).to  eq 0
+    expect(bst.head.left.title).to eq "Young Guns Two"
+    expect(second).to eq 1
   end
 end
