@@ -42,4 +42,16 @@ class BinarySearchTree
     depth
   end
 
+  def include?(score, current=@head)
+    return true if score == current.score
+    return false if score < current.score && current.left.nil?
+    return false if score > current.score && current.right.nil?
+    return true if score == current.left.score || score == current.right.score
+    if score < current.score
+      include?(score, current.left)
+    else
+      include?(score, current.right)
+    end
+  end
+
 end
