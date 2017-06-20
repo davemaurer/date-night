@@ -36,5 +36,7 @@ describe BinarySearchTree do
     expect(bst.head.left.left.title).to   eq "Out of Africa"
     expect(bst.head.right.left.title).to  eq "Finding Nemo"
     expect(bst.head.right.right.title).to eq "Star Wars A New Hope"
+    expect(fourth).to                     eq 2
+    expect(sixth).to                      eq 2
   end
 end
