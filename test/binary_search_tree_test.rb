@@ -39,4 +39,17 @@ describe BinarySearchTree do
     expect(fourth).to                     eq 2
     expect(sixth).to                      eq 2
   end
+
+  it "determines if a movie is in the three, by score" do
+    bst = BinarySearchTree.new
+    first = bst.insert(60, "Scary Movie")
+    second = bst.insert(30, "Young Guns Two")
+    third = bst.insert(90, "Deadpool")
+    fourth = bst.insert(70, "Finding Nemo")
+    fifth = bst.insert(100, "Star Wars A New Hope")
+    sixth = bst.insert(10, "Out of Africa")
+
+    expect(bst.include?(50)).to eq false
+    expect(bst.include?(90)).to eq true
+  end
 end
