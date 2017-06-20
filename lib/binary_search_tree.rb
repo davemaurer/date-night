@@ -75,7 +75,7 @@ class BinarySearchTree
   end
 
   def max
-    return "This list is empty" unless @head
+    return "This list is empty." unless @head
     current = @head
     current = current.right until current.right.nil?
     Hash[current.title, current.score]
