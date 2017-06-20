@@ -80,4 +80,11 @@ class BinarySearchTree
     current = current.right until current.right.nil?
     Hash[current.title, current.score]
   end
+
+  def min
+    return "This list is empty." unless @head
+    current = @head
+    current = current.left until current.left.nil?
+    Hash[current.title, current.score]
+  end
 end
