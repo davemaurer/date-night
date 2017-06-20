@@ -47,6 +47,10 @@ class BinarySearchTree
     return false if score < current.score && current.left.nil?
     return false if score > current.score && current.right.nil?
     return true if score == current.left.score || score == current.right.score
+    continue_search(score, current)
+  end
+
+  def continue_search(score, current)
     if score < current.score
       include?(score, current.left)
     else
