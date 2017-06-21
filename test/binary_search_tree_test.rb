@@ -135,4 +135,22 @@ describe BinarySearchTree do
     expect(bst.min).to eq({ "Young Guns Two" => 30 })
   end
 
+  it "can return a sorted list of all movies" do
+    bst = BinarySearchTree.new
+    bst.insert(60, "Scary Movie")
+    bst.insert(30, "Young Guns Two")
+    bst.insert(10, "Out of Africa")
+    bst.insert(70, "Deadpool")
+    bst.insert(65, "Finding Nemo")
+    bst.insert(100, "Star Wars A New Hope")
+
+    expect(bst.sort).to eq [{ "Out of Africa" => 10 },
+                            { "Young Guns Two" => 30 },
+                            { "Scary Movie" => 60 },
+                            { "Finding Nemo" => 65 },
+                            { "Deadpool" => 70 },
+                            { "Star Wars A New Hope" => 100}
+                           ]
+  end
+
 end
