@@ -97,7 +97,7 @@ describe BinarySearchTree do
     expect(bst.max).to eq({ "Star Wars A New Hope" => 100 })
   end
 
-  it "tells you if the list is empty when looking for highest score" do
+  it "tells you if the list is empty when looking for highest scoring movie" do
     bst = BinarySearchTree.new
     expect(bst.max).to eq "This list is empty."
   end
@@ -107,7 +107,7 @@ describe BinarySearchTree do
     bst.insert(60, "Scary Movie")
     bst.insert(30, "Young Guns Two")
 
-    expect(bst.max).to eq ({ "Scary Movie" => 60 })
+    expect(bst.max).to eq({ "Scary Movie" => 60 })
   end
 
   it "finds the lowest scoring movie" do
@@ -121,4 +121,18 @@ describe BinarySearchTree do
 
     expect(bst.min).to eq({"Out of Africa" => 10})
   end
+
+  it "tells you if the list is empty when looking for the lowest scoring movie" do
+    bst = BinarySearchTree.new
+    expect(bst.max).to eq "This list is empty."
+  end
+
+  it "finds lowest scoring movie if it's the head" do
+    bst = BinarySearchTree.new
+    bst.insert(30, "Young Guns Two")
+    bst.insert(65, "Finding Nemo")
+
+    expect(bst.min).to eq({ "Young Guns Two" => 30 })
+  end
+
 end
