@@ -94,7 +94,7 @@ class BinarySearchTree
     movies = [min]
     latest_score = movies.last.score
     if current.left
-      current = current.left until current.left.score 
+      current = current.left until current.left.score
     end
     movies
   end

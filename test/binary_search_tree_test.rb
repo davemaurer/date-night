@@ -48,12 +48,12 @@ describe BinarySearchTree do
 
   it "determines if a movie is in the tree, by score" do
     bst = BinarySearchTree.new
-    first  = bst.insert(60, "Scary Movie")
-    second = bst.insert(30, "Young Guns Two")
-    third  = bst.insert(70, "Deadpool")
-    fourth = bst.insert(65, "Finding Nemo")
-    fifth  = bst.insert(95, "Star Wars A New Hope")
-    sixth  = bst.insert(100, "Happy Gilmore")
+    bst.insert(60, "Scary Movie")
+    bst.insert(30, "Young Guns Two")
+    bst.insert(70, "Deadpool")
+    bst.insert(65, "Finding Nemo")
+    bst.insert(95, "Star Wars A New Hope")
+    bst.insert(100, "Happy Gilmore")
 
     expect(bst.include?(10)).to eq false
     expect(bst.include?(95)).to eq true
@@ -65,13 +65,13 @@ describe BinarySearchTree do
 
   it "finds the depth of a node, by score" do
     bst = BinarySearchTree.new
-    first   = bst.insert(60, "Scary Movie")
-    second  = bst.insert(30, "Young Guns Two")
-    third   = bst.insert(70, "Deadpool")
-    fourth  = bst.insert(65, "Finding Nemo")
-    fifth   = bst.insert(95, "Star Wars A New Hope")
-    sixth   = bst.insert(96, "Happy Gilmore")
-    seventh = bst.insert(100, "Star Wars A New Hope")
+    bst.insert(60, "Scary Movie")
+    bst.insert(30, "Young Guns Two")
+    bst.insert(70, "Deadpool")
+    bst.insert(65, "Finding Nemo")
+    bst.insert(95, "Star Wars A New Hope")
+    bst.insert(96, "Happy Gilmore")
+    bst.insert(100, "Star Wars A New Hope")
 
     expect(bst.depth_of?(1)).to   eq nil
     expect(bst.depth_of?(10)).to  eq nil
