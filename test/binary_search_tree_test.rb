@@ -177,4 +177,17 @@ describe BinarySearchTree do
     expect(bst.head.right.right.right.title).to eq "Happy Gilmore"
   end
 
+  it "evaluates its health" do
+    bst = BinarySearchTree.new
+    bst.insert(60, "Scary Movie")
+    bst.insert(30, "Young Guns Two")
+    bst.insert(90, "Deadpool")
+    bst.insert(70, "Finding Nemo")
+    bst.insert(95, "Star Wars A New Hope")
+    bst.insert(10, "Out of Africa")
+    bst.insert(100, "Happy Gilmore")
+
+    expect(bst.health(0)).to eq [[60, 7, 100]]
+  end
+
 end

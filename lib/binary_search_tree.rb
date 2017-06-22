@@ -104,4 +104,8 @@ class BinarySearchTree
     end
   end
 
+  def health(depth)
+
+  end
+
 end
