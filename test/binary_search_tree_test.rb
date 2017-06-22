@@ -160,4 +160,8 @@ describe BinarySearchTree do
     expect(bst.sort).to eq [{ "Scary Movie" => 60 }]
   end
 
+  it "tells you if the list is empty when sorting" do
+    bst = BinarySearchTree.new
+    expect(bst.sort).to eq "This list is empty."
+  end
 end
