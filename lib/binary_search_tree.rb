@@ -88,14 +88,12 @@ class BinarySearchTree
     Hash[current.title, current.score]
   end
 
-  def sort
-    return "This list is empty." unless @head
-    current = @head
-    movies = [min]
-    latest_score = movies.last.score
-    if current.left
-      current = current.left until current.left.score
-    end
+  def sort(current=@head, movies=[])
+    return "This list is empty." unless current
+    return if current.nil?
+    sort(current.left, movies)
+      movies << { current.title => current.score }
+    sort(current.right, movies)
     movies
   end
 
