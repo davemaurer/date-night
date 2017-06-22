@@ -164,4 +164,9 @@ describe BinarySearchTree do
     bst = BinarySearchTree.new
     expect(bst.sort).to eq "This list is empty."
   end
+
+  it "inserts movies from a csv file" do
+    bst = BinarySearchTree.new
+    bst.load("./movies.csv")
+  end
 end
