@@ -97,4 +97,11 @@ class BinarySearchTree
     movies
   end
 
+  def load(file)
+    File.open(file).readlines.each do |line|
+      data = line.strip.split(", ", 2)
+      insert(data[0].to_i, data[1])
+    end
+  end
+
 end

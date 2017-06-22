@@ -167,6 +167,14 @@ describe BinarySearchTree do
 
   it "inserts movies from a csv file" do
     bst = BinarySearchTree.new
-    bst.load("./movies.csv")
+    bst.load("test/movies.txt")
+
+    expect(bst.head.left.title).to eq "Young Guns Two"
+    expect(bst.head.right.title).to eq "Deadpool"
+    expect(bst.head.left.left.title).to eq "Out of Africa"
+    expect(bst.head.right.left.title).to eq "Finding Nemo"
+    expect(bst.head.right.right.title).to eq "Star Wars A New Hope"
+    expect(bst.head.right.right.right.title).to eq "Happy Gilmore"
   end
+
 end
