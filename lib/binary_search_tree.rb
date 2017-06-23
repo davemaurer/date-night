@@ -7,8 +7,16 @@ class BinarySearchTree
     @head = nil
   end
 
-  def insert(score, title)
-    depth = 0
+  # def insert(score, title, current=@head, depth=0)
+  #   if current.nil?
+  #     current = Node.new(score, title)
+  #     return depth
+  #   end
+  #   insert(score, title, current.left, depth + 1) if current.left && score < current.left.score
+  #   insert(score, title, current.right, depth + 1) if current.right && score > current.right.score
+  # end
+
+  def insert(score, title, depth=0)
     if !@head
       @head = Node.new(score, title)
     else
@@ -17,30 +25,48 @@ class BinarySearchTree
     depth
   end
 
-  def place_node(score, title, depth)
-    current = @head
-    done = false
-    until done
-      if score < current.score
-        if current.left.nil?
-          current.left = Node.new(score, title)
-          done = true
-        else
-          current = current.left
-          depth += 1
-        end
-      elsif score > current.score
-        if current.right.nil?
-          current.right = Node.new(score, title)
-          done = true
-        else
-          current = current.right
-          depth += 1
-        end
+  def place_node(score, title, depth, current=@head)
+    if score < current.score
+      if current.left.nil?
+        current.left = Node.new(score, title)
+        return depth
+      else
+        place_node(score, title, depth + 1, current.left)
+      end
+    elsif score > current.score
+      if current.right.nil?
+        current.right = Node.new(score, title)
+        return depth
+      else
+        place_node(score, title, depth + 1, current.right)
       end
     end
-    depth
   end
+
+  # def place_node(score, title, depth)
+  #   current = @head
+  #   done = false
+  #   until done
+  #     if score < current.score
+  #       if current.left.nil?
+  #         current.left = Node.new(score, title)
+  #         done = true
+  #       else
+  #         current = current.left
+  #         depth += 1
+  #       end
+  #     elsif score > current.score
+  #       if current.right.nil?
+  #         current.right = Node.new(score, title)
+  #         done = true
+  #       else
+  #         current = current.right
+  #         depth += 1
+  #       end
+  #     end
+  #   end
+  #   depth
+  # end
 
   def include?(score, current=@head)
     return true if score == current.score
@@ -92,7 +118,7 @@ class BinarySearchTree
     return "This list is empty." unless current
     return if current.nil?
     sort(current.left, movies)
-      movies << { current.title => current.score }
+    movies << { current.title => current.score }
     sort(current.right, movies)
     movies
   end
@@ -104,8 +130,10 @@ class BinarySearchTree
     end
   end
 
-  def health(depth)
-
-  end
+  # def health(depth, current=@head, movies=[])
+  #   return if current.nil?
+  #   health(depth, current, movies)
+  #   movies
+  # end
 
 end
