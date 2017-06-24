@@ -168,8 +168,11 @@ describe BinarySearchTree do
 
   it "can find a node by score" do
     bst = setup_tree
+    find_nemo = bst.find_node(70)
+    dead_node = bst.find_node(90)
 
-    expect(bst.find_node(70, bst.head).title).to eq "Finding Nemo"
+    expect(find_nemo.title).to eq "Finding Nemo"
+    expect(dead_node.title).to eq "Deadpool"
   end
 
   it "can delete nodes" do

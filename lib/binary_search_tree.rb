@@ -149,7 +149,7 @@ class BinarySearchTree
       total_count = count_nodes(@head)
       node_count = count_nodes(current)
       movies << [current.score, node_count,
-                 percentage_of_tree(total_count, node_count)]
+        percentage_of_tree(total_count, node_count)]
     end
     movies
   end
@@ -167,15 +167,15 @@ class BinarySearchTree
   end
 
   def remove(score)
-    to_remove = find_node(score, @head)
+    to_remove = find_node(score)
     if to_remove
       if to_remove.left.nil? && to_remove.right.nil?
-        delete_node(score, @head)
+        delete_node(score)
       end
     end
   end
 
-  def find_node(score, current)
+  def find_node(score, current=@head)
     return nil if current.nil?
     if score == current.score
       current
@@ -186,11 +186,23 @@ class BinarySearchTree
     end
   end
 
-  def delete_node(score, current)
+  def delete_node(score, current=@head)
     return nil if current.nil?
-    find_node(score, current.left) if score < current.score
     current = nil if score == current.score
-    find_node(score, current.right) if score > current.score
+    if score < current.score
+      if score == current.left.score
+        current.left = nil
+      else
+        delete_node(score, current.left)
+      end
+    elsif score > current.score
+      if score == current.right.score
+        current.right = nil
+      else
+        delete_node(score, current.right)
+      end
+    end
   end
+
 
 end
