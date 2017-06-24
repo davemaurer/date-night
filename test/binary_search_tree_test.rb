@@ -167,40 +167,28 @@ describe BinarySearchTree do
   end
 
   it "can find a node by score" do
-    bst = BinarySearchTree.new
-    bst.insert(60, "Scary Movie")
-    bst.insert(30, "Young Guns Two")
-    bst.insert(90, "Deadpool")
-    bst.insert(70, "Finding Nemo")
-    bst.insert(95, "Star Wars A New Hope")
-    bst.insert(10, "Out of Africa")
-    bst.insert(100, "Happy Gilmore")
+    bst = setup_tree
 
+    expect(bst.find_node(70, bst.head).title).to eq "Finding Nemo"
   end
 
   it "can delete nodes" do
-    bst = BinarySearchTree.new
-    bst.insert(60, "Scary Movie")
-    bst.insert(30, "Young Guns Two")
-    bst.insert(90, "Deadpool")
-    bst.insert(70, "Finding Nemo")
-    bst.insert(95, "Star Wars A New Hope")
-    bst.insert(10, "Out of Africa")
-    bst.insert(100, "Happy Gilmore")
+    bst = setup_tree
 
-    expect(bst.right.left.score).to eq 70
+    expect(bst.head.right.left.score).to eq 70
 
     bst.remove(70)
 
-    expect(bst.right.left).to eq nil
+    expect(bst.head.right.left).to eq nil
 
     bst.remove(90)
 
-    expect(bst.right.score).to eq 95
+    expect(bst.head.right.score).to eq 95
 
   end
 
   private
+
   def setup_tree
     bst = BinarySearchTree.new
     bst.insert(60, "Scary Movie")
@@ -212,4 +200,5 @@ describe BinarySearchTree do
     bst.insert(100, "Happy Gilmore")
     bst
   end
+
 end

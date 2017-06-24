@@ -167,14 +167,30 @@ class BinarySearchTree
   end
 
   def remove(score)
-    to_remove = find_node(score)
+    to_remove = find_node(score, @head)
+    if to_remove
+      if to_remove.left.nil? && to_remove.right.nil?
+        delete_node(score, @head)
+      end
+    end
   end
 
-  def find_node(score, current=@head)
+  def find_node(score, current)
     return nil if current.nil?
-    return current if score == current.score
+    if score == current.score
+      current
+    elsif score < current.score
+      find_node(score, current.left)
+    elsif score > current.score
+      find_node(score, current.right)
+    end
+  end
+
+  def delete_node(score, current)
+    return nil if current.nil?
     find_node(score, current.left) if score < current.score
-    find_node(score, current.right) if score < current.score
+    current = nil if score == current.score
+    find_node(score, current.right) if score > current.score
   end
 
 end
