@@ -26,20 +26,26 @@ class BinarySearchTree
   end
 
   def place_node(score, title, depth, current=@head)
-    if score < current.score
-      if current.left.nil?
-        current.left = Node.new(score, title)
-        return depth
-      else
-        place_node(score, title, depth + 1, current.left)
-      end
-    elsif score > current.score
-      if current.right.nil?
-        current.right = Node.new(score, title)
-        return depth
-      else
-        place_node(score, title, depth + 1, current.right)
-      end
+    depth = insert_left(score, title, depth, current) if score < current.score
+    depth = insert_right(score, title, depth, current) if score > current.score
+    depth
+  end
+
+  def insert_left(score, title, depth, current)
+    if current.left.nil?
+      current.left = Node.new(score, title)
+      depth
+    else
+      place_node(score, title, depth + 1, current.left)
+    end
+  end
+
+  def insert_right(score, title, depth, current)
+    if current.right.nil?
+      current.right = Node.new(score, title)
+      depth
+    else
+      place_node(score, title, depth + 1, current.right)
     end
   end
 
@@ -134,14 +140,19 @@ class BinarySearchTree
     return if current.nil?
     health(depth, current.left, movies)
     if depth_of?(current.score) >= depth
-    movies << [current.score, count_nodes(current), percentage_of_tree(current)]
+      movies << [current.score, sort(current).length, percentage_of_tree(current)]
     end
     health(depth, current.right, movies)
     movies
   end
 
-  def count_nodes(depth)
-    
+  def count_nodes(current)
+    count = 0
+    return if current.nil?
+    count_nodes(current.left)
+    count += 1
+    count_nodes(current.right)
+    count
   end
 
 end

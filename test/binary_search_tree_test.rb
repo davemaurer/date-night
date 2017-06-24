@@ -190,4 +190,21 @@ describe BinarySearchTree do
     expect(bst.health(0)).to eq [[60, 7, 100]]
   end
 
+  it "can count child nodes including the starting node" do
+    bst = BinarySearchTree.new
+    bst.insert(60, "Scary Movie")
+    bst.insert(30, "Young Guns Two")
+    bst.insert(90, "Deadpool")
+    bst.insert(70, "Finding Nemo")
+    bst.insert(95, "Star Wars A New Hope")
+    bst.insert(10, "Out of Africa")
+    bst.insert(100, "Happy Gilmore")
+    nodes_of_scary = bst.count_nodes(bst.head)
+    nodes_of_nemo  = bst.count_nodes(bst.head.right.left)
+    nodes_of_dead  = bst.count_nodes(bst.head.right.right)
+
+    expect(nodes_of_scary).to eq 7
+    expect(nodes_of_nemo).to  eq 1
+    expect(nodes_of_dead).to  eq 2
+  end
 end
