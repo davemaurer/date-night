@@ -163,7 +163,7 @@ class BinarySearchTree
   end
 
   def percentage_of_tree(total_count, node_count)
-    (node_count.to_f / total_count.to_f) * 100
+    (node_count.to_f / total_count.to_f * 100).to_i
   end
 
 end

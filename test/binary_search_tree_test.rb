@@ -188,6 +188,7 @@ describe BinarySearchTree do
     bst.insert(100, "Happy Gilmore")
 
     expect(bst.health(0)).to eq [[60, 7, 100]]
+    expect(bst.health(1)).to eq [[30, 2, 28], [90, 4, 57]]
   end
 
   it "can count child nodes including the starting node" do
