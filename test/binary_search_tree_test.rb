@@ -47,15 +47,9 @@ describe BinarySearchTree do
   end
 
   it "determines if a movie is in the tree, by score" do
-    bst = BinarySearchTree.new
-    bst.insert(60, "Scary Movie")
-    bst.insert(30, "Young Guns Two")
-    bst.insert(70, "Deadpool")
-    bst.insert(65, "Finding Nemo")
-    bst.insert(95, "Star Wars A New Hope")
-    bst.insert(100, "Happy Gilmore")
+    bst = setup_tree
 
-    expect(bst.include?(10)).to eq false
+    expect(bst.include?(10)).to eq true
     expect(bst.include?(95)).to eq true
     expect(bst.include?(68)).to eq false
     expect(bst.include?(63)).to eq false
@@ -64,37 +58,24 @@ describe BinarySearchTree do
   end
 
   it "finds the depth of a node, by score" do
-    bst = BinarySearchTree.new
-    bst.insert(60, "Scary Movie")
-    bst.insert(30, "Young Guns Two")
-    bst.insert(70, "Deadpool")
-    bst.insert(65, "Finding Nemo")
-    bst.insert(95, "Star Wars A New Hope")
-    bst.insert(96, "Happy Gilmore")
-    bst.insert(100, "Star Wars A New Hope")
+    bst = setup_tree
 
     expect(bst.depth_of?(1)).to   eq nil
-    expect(bst.depth_of?(10)).to  eq nil
+    expect(bst.depth_of?(65)).to  eq nil
     expect(bst.depth_of?(99)).to  eq nil
     expect(bst.depth_of?(105)).to eq nil
     expect(bst.depth_of?(60)).to  eq 0
     expect(bst.depth_of?(30)).to  eq 1
-    expect(bst.depth_of?(70)).to  eq 1
-    expect(bst.depth_of?(65)).to  eq 2
+    expect(bst.depth_of?(90)).to  eq 1
+    expect(bst.depth_of?(70)).to  eq 2
     expect(bst.depth_of?(95)).to  eq 2
-    expect(bst.depth_of?(96)).to  eq 3
-    expect(bst.depth_of?(100)).to eq 4
+    expect(bst.depth_of?(100)).to eq 3
   end
 
   it "finds the highest scoring movie" do
-    bst = BinarySearchTree.new
-    bst.insert(60, "Scary Movie")
-    bst.insert(30, "Young Guns Two")
-    bst.insert(70, "Deadpool")
-    bst.insert(65, "Finding Nemo")
-    bst.insert(100, "Star Wars A New Hope")
+    bst = setup_tree
 
-    expect(bst.max).to eq({ "Star Wars A New Hope" => 100 })
+    expect(bst.max).to eq({ "Happy Gilmore" => 100 })
   end
 
   it "tells you if the list is empty when looking for highest scoring movie" do
@@ -111,13 +92,7 @@ describe BinarySearchTree do
   end
 
   it "finds the lowest scoring movie" do
-    bst = BinarySearchTree.new
-    bst.insert(60, "Scary Movie")
-    bst.insert(30, "Young Guns Two")
-    bst.insert(10, "Out of Africa")
-    bst.insert(70, "Deadpool")
-    bst.insert(65, "Finding Nemo")
-    bst.insert(100, "Star Wars A New Hope")
+    bst = setup_tree
 
     expect(bst.min).to eq({"Out of Africa" => 10})
   end
@@ -136,20 +111,15 @@ describe BinarySearchTree do
   end
 
   it "returns a sorted list of all movies" do
-    bst = BinarySearchTree.new
-    bst.insert(60, "Scary Movie")
-    bst.insert(30, "Young Guns Two")
-    bst.insert(10, "Out of Africa")
-    bst.insert(70, "Deadpool")
-    bst.insert(65, "Finding Nemo")
-    bst.insert(100, "Star Wars A New Hope")
+    bst = setup_tree
 
     expect(bst.sort).to eq [{ "Out of Africa" => 10 },
                             { "Young Guns Two" => 30 },
                             { "Scary Movie" => 60 },
-                            { "Finding Nemo" => 65 },
-                            { "Deadpool" => 70 },
-                            { "Star Wars A New Hope" => 100}
+                            { "Finding Nemo" => 70 },
+                            { "Deadpool" => 90 },
+                            { "Star Wars A New Hope" => 95 },
+                            { "Happy Gilmore" => 100 }
                            ]
   end
 
@@ -178,28 +148,15 @@ describe BinarySearchTree do
   end
 
   it "evaluates its health" do
-    bst = BinarySearchTree.new
-    bst.insert(60, "Scary Movie")
-    bst.insert(30, "Young Guns Two")
-    bst.insert(90, "Deadpool")
-    bst.insert(70, "Finding Nemo")
-    bst.insert(95, "Star Wars A New Hope")
-    bst.insert(10, "Out of Africa")
-    bst.insert(100, "Happy Gilmore")
+    bst = setup_tree
 
     expect(bst.health(0)).to eq [[60, 7, 100]]
     expect(bst.health(1)).to eq [[30, 2, 28], [90, 4, 57]]
   end
 
   it "can count child nodes including the starting node" do
-    bst = BinarySearchTree.new
-    bst.insert(60, "Scary Movie")
-    bst.insert(30, "Young Guns Two")
-    bst.insert(90, "Deadpool")
-    bst.insert(70, "Finding Nemo")
-    bst.insert(95, "Star Wars A New Hope")
-    bst.insert(10, "Out of Africa")
-    bst.insert(100, "Happy Gilmore")
+    bst = setup_tree
+
     nodes_of_scary = bst.count_nodes(bst.head)
     nodes_of_nemo  = bst.count_nodes(bst.head.right.left)
     nodes_of_dead  = bst.count_nodes(bst.head.right.right)
@@ -207,6 +164,18 @@ describe BinarySearchTree do
     expect(nodes_of_scary).to eq 7
     expect(nodes_of_nemo).to  eq 1
     expect(nodes_of_dead).to  eq 2
+  end
+
+  it "can find a node by score" do
+    bst = BinarySearchTree.new
+    bst.insert(60, "Scary Movie")
+    bst.insert(30, "Young Guns Two")
+    bst.insert(90, "Deadpool")
+    bst.insert(70, "Finding Nemo")
+    bst.insert(95, "Star Wars A New Hope")
+    bst.insert(10, "Out of Africa")
+    bst.insert(100, "Happy Gilmore")
+
   end
 
   it "can delete nodes" do
@@ -229,5 +198,18 @@ describe BinarySearchTree do
 
     expect(bst.right.score).to eq 95
 
+  end
+
+  private
+  def setup_tree
+    bst = BinarySearchTree.new
+    bst.insert(60, "Scary Movie")
+    bst.insert(30, "Young Guns Two")
+    bst.insert(90, "Deadpool")
+    bst.insert(70, "Finding Nemo")
+    bst.insert(95, "Star Wars A New Hope")
+    bst.insert(10, "Out of Africa")
+    bst.insert(100, "Happy Gilmore")
+    bst
   end
 end
