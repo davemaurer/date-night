@@ -139,12 +139,18 @@ class BinarySearchTree
   def health(depth, current=@head, movies=[])
     return if current.nil?
     health(depth, current.left, movies)
+    movies = format_health(depth, current, movies)
+    health(depth, current.right, movies)
+    movies
+  end
+
+  def format_health(depth, current, movies)
     if depth_of?(current.score) == depth
       total_count = count_nodes(@head)
       node_count = count_nodes(current)
-      movies << [current.score, node_count, percentage_of_tree(total_count, node_count)]
+      movies << [current.score, node_count,
+                 percentage_of_tree(total_count, node_count)]
     end
-    health(depth, current.right, movies)
     movies
   end
 
