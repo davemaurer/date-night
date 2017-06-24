@@ -130,10 +130,18 @@ class BinarySearchTree
     end
   end
 
-  # def health(depth, current=@head, movies=[])
-  #   return if current.nil?
-  #   health(depth, current, movies)
-  #   movies
-  # end
+  def health(depth, current=@head, movies=[])
+    return if current.nil?
+    health(depth, current.left, movies)
+    if depth_of?(current.score) >= depth
+    movies << [current.score, count_nodes(current), percentage_of_tree(current)]
+    end
+    health(depth, current.right, movies)
+    movies
+  end
+
+  def count_nodes(depth)
+    
+  end
 
 end
