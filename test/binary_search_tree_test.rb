@@ -6,14 +6,14 @@ describe BinarySearchTree do
     expect(bst.head).to eq nil
   end
 
-  it "can insert a node" do
+  it "inserts one node" do
     bst    = BinarySearchTree.new
     result = bst.insert(60, "Scary Movie")
     expect(bst.head.title).to eq "Scary Movie"
     expect(result).to eq 0
   end
 
-  it "can insert two nodes" do
+  it "inserts two nodes" do
     bst    = BinarySearchTree.new
     first  = bst.insert(60, "Scary Movie")
     second = bst.insert(30, "Young Guns Two")
@@ -24,7 +24,7 @@ describe BinarySearchTree do
     expect(second).to              eq 1
   end
 
-  it "can insert more than two nodes" do
+  it "inserts more than two nodes" do
     bst     = BinarySearchTree.new
     _       = bst.insert(60, "Scary Movie")
     _       = bst.insert(30, "Young Guns Two")
@@ -154,7 +154,7 @@ describe BinarySearchTree do
     expect(bst.health(1)).to eq [[30, 2, 28], [90, 4, 57]]
   end
 
-  it "can count child nodes including the starting node" do
+  it "counts child nodes including the starting node" do
     bst = setup_tree
 
     nodes_of_scary = bst.count_nodes(bst.head)
@@ -166,7 +166,7 @@ describe BinarySearchTree do
     expect(nodes_of_dead).to  eq 2
   end
 
-  it "can find a node by score" do
+  it "finds a node by score" do
     bst = setup_tree
     find_nemo = bst.find_node(70)
     dead_node = bst.find_node(90)
@@ -175,7 +175,7 @@ describe BinarySearchTree do
     expect(dead_node.title).to eq "Deadpool"
   end
 
-  it "can delete nodes" do
+  it "deletes nodes" do
     bst = setup_tree
 
     expect(bst.head.right.left.score).to eq 70
