@@ -166,4 +166,8 @@ class BinarySearchTree
     (node_count.to_f / total_count.to_f * 100).to_i
   end
 
+  def remove(score)
+
+  end
+
 end

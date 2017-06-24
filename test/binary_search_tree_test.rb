@@ -208,4 +208,26 @@ describe BinarySearchTree do
     expect(nodes_of_nemo).to  eq 1
     expect(nodes_of_dead).to  eq 2
   end
+
+  it "can delete nodes" do
+    bst = BinarySearchTree.new
+    bst.insert(60, "Scary Movie")
+    bst.insert(30, "Young Guns Two")
+    bst.insert(90, "Deadpool")
+    bst.insert(70, "Finding Nemo")
+    bst.insert(95, "Star Wars A New Hope")
+    bst.insert(10, "Out of Africa")
+    bst.insert(100, "Happy Gilmore")
+
+    expect(bst.right.left.score).to eq 70
+
+    bst.remove(70)
+
+    expect(bst.right.left).to eq nil
+
+    bst.remove(90)
+
+    expect(bst.right.score).to eq 95
+
+  end
 end
