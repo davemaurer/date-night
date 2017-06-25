@@ -9,6 +9,7 @@ describe BinarySearchTree do
   it "inserts one node" do
     bst    = BinarySearchTree.new
     result = bst.insert(60, "Scary Movie")
+
     expect(bst.head.title).to eq "Scary Movie"
     expect(result).to eq 0
   end
@@ -74,7 +75,6 @@ describe BinarySearchTree do
 
   it "finds the highest scoring movie" do
     bst = setup_tree
-
     expect(bst.max).to eq({ "Happy Gilmore" => 100 })
   end
 
@@ -93,7 +93,6 @@ describe BinarySearchTree do
 
   it "finds the lowest scoring movie" do
     bst = setup_tree
-
     expect(bst.min).to eq({"Out of Africa" => 10})
   end
 
@@ -156,7 +155,6 @@ describe BinarySearchTree do
 
   it "counts child nodes including the starting node" do
     bst = setup_tree
-
     nodes_of_scary = bst.count_nodes(bst.head)
     nodes_of_nemo  = bst.count_nodes(bst.head.right.left)
     nodes_of_dead  = bst.count_nodes(bst.head.right.right)
@@ -177,17 +175,11 @@ describe BinarySearchTree do
 
   it "deletes nodes" do
     bst = setup_tree
-
     expect(bst.head.right.left.score).to eq 70
-
     bst.remove(70)
-
     expect(bst.head.right.left).to eq nil
-
     bst.remove(90)
-
     expect(bst.head.right.score).to eq 95
-
   end
 
   private

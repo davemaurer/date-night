@@ -7,15 +7,6 @@ class BinarySearchTree
     @head = nil
   end
 
-  # def insert(score, title, current=@head, depth=0)
-  #   if current.nil?
-  #     current = Node.new(score, title)
-  #     return depth
-  #   end
-  #   insert(score, title, current.left, depth + 1) if current.left && score < current.left.score
-  #   insert(score, title, current.right, depth + 1) if current.right && score > current.right.score
-  # end
-
   def insert(score, title, depth=0)
     if !@head
       @head = Node.new(score, title)
@@ -48,31 +39,6 @@ class BinarySearchTree
       place_node(score, title, depth + 1, current.right)
     end
   end
-
-  # def place_node(score, title, depth)
-  #   current = @head
-  #   done = false
-  #   until done
-  #     if score < current.score
-  #       if current.left.nil?
-  #         current.left = Node.new(score, title)
-  #         done = true
-  #       else
-  #         current = current.left
-  #         depth += 1
-  #       end
-  #     elsif score > current.score
-  #       if current.right.nil?
-  #         current.right = Node.new(score, title)
-  #         done = true
-  #       else
-  #         current = current.right
-  #         depth += 1
-  #       end
-  #     end
-  #   end
-  #   depth
-  # end
 
   def include?(score, current=@head)
     return true if score == current.score
@@ -203,6 +169,5 @@ class BinarySearchTree
       end
     end
   end
-
 
 end
