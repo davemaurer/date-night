@@ -154,7 +154,6 @@ class BinarySearchTree
 
   def delete_node(score, current=@head)
     return nil if current.nil?
-    current = nil if score == current.score
     if score < current.score
       if score == current.left.score
         current.left = nil
