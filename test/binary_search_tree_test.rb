@@ -173,13 +173,18 @@ describe BinarySearchTree do
     expect(dead_node.title).to eq "Deadpool"
   end
 
-  it "deletes nodes" do
+  it "deletes nodes with no children" do
     bst = setup_tree
     expect(bst.head.right.left.score).to eq 70
     bst.remove(70)
     expect(bst.head.right.left).to eq nil
-    bst.remove(90)
-    expect(bst.head.right.score).to eq 95
+  end
+
+  it "deletes nodes with children" do
+  bst = setup_tree
+  expect(bst.head.right.left.score).to eq 70
+  bst.remove(90)
+  expect(bst.head.right.score).to eq 95
   end
 
   private
