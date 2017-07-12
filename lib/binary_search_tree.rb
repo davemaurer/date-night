@@ -90,7 +90,7 @@ class BinarySearchTree
     return "This list is empty." unless current
     return if current.nil?
     sort(current.left, movies)
-    movies << { current.title => current.score }
+    movies << Hash[current.title, current.score]
     sort(current.right, movies)
     movies
   end
@@ -111,11 +111,10 @@ class BinarySearchTree
   end
 
   def format_health(depth, current, movies)
-    if depth_of?(current.score) == depth
+    if depth_of?(current.score) >= depth
       total_count = count_nodes(@head)
       node_count = count_nodes(current)
-      movies << [current.score, node_count,
-        percentage_of_tree(total_count, node_count)]
+      movies << [current.score, node_count, percentage_of_tree(total_count, node_count)]
     end
     movies
   end
