@@ -17,8 +17,8 @@ class BinarySearchTree
   end
 
   def place_node(score, title, depth, current=@head)
-    depth = insert_left(score, title, depth, current) if score < current.score
-    depth = insert_right(score, title, depth, current) if score > current.score
+    insert_left(score, title, depth, current) if score < current.score
+    insert_right(score, title, depth, current) if score > current.score
     depth
   end
 
